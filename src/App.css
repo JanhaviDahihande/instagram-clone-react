@@ -11,9 +11,25 @@
   padding: 20px;
   border-bottom: 1px solid lightgray;
   object-fit: contain; /* Instagram logo not stretched */
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__headerImage{
+  object-fit: contain;
 }
 
 .app__signup{
   display: flex;
   flex-direction: column;
+}
+
+.app__posts {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.app__postsRight {
+  margin-left: 20px;
 }
