@@ -64,7 +64,9 @@ function App() {
 
   useEffect(() => {
     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-      setPosts(snapshot.docs.map(doc => doc.data()));
+      setPosts(snapshot.docs.map(doc => ({
+        id: doc.id, post: doc.data()
+      })));
     });
   }, []);
 
@@ -88,7 +90,7 @@ function App() {
       .catch((error) => alert(error.message));
     setOpenSignIn(false);
   }
-
+console.log("posts: ", posts);
   return (
     <div className="App">
       <Modal
@@ -176,14 +178,14 @@ function App() {
       <div className="app__posts">
         <div className="app__postsLeft">
           {
-            posts.map((post) => (
-              <Post username={post.username} imageUrl={post.imageUrl} caption={post.caption}/>
+            posts.map(({id, post}) => (
+              <Post key={id} user={user} postId={id} username={post.username} imageUrl={post.imageUrl} caption={post.caption}/>
             ))
           }
         </div>
         <div className="app__postsRight">
           <InstagramEmbed
-            url='https://www.instagram.com/p/CCXRgM4DPP7/'
+            url='https://www.instagram.com/p/CANvKCAgnDF/'
             maxWidth={320}
             hideCaption={false}
             containerTagName='div'
